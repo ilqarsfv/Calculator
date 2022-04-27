@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculator</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            border: none;
+        }
+
+        body {
+            background-image: linear-gradient(to left, #694fffeb, #bf4fff);
+            height: 100vh;
+        }
+
+        .calculator {
+            min-height: 100vh;
+        }
+
+        .calculator #firstdiv {
+            display: table;
+            margin: 50px auto;
+            padding: 70px;
+            border-radius: 10px;
+            outline: none;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        button {
+            height: 58px;
+            width: 70px;
+            margin: 5px;
+            background-color: #8472be;
+            color: #fff;
+            box-shadow: 0 0 10px rebeccapurple;
+            border-radius: 5px;
+
+        }
+
+        #display {
+            width: 320px;
+            height: 40px;
+            border: 1px solid #000;
+            margin: 5px;
+            padding: 15px;
+            text-align: right;
+            box-shadow: 0 0 10px rebeccapurple;
+
+        }
+
+        #beraber {
+            height: 125px;
+            position: absolute;
+            margin-left: 10px;
+        }
+
+        #zero {
+
+            width: 155px;
+        }
+
+        .hesablama {
+            margin: 50% auto;
+            text-align: left;
+            width: 50%;
+        }
+
+        .btn span {
+            color: #fff;
+        }
+
+        .input input {
+            height: 30px;
+            margin: 5px;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="calculator">
+        <div id="firstdiv">
+            <div><input id="display" type="text" disabled style="background-color: #fff;"></div>
+            <div>
+                <button onclick="del()">C</button>
+                <button id="quvvet" onclick="quvvet()">x²</button>
+                <button onclick="show('/')">/</button>
+                <button id="vurma" onclick="show('*')">x</button>
+            </div>
+            <div>
+                <button onclick="show('7')">7</button>
+                <button onclick="show('8')">8</button>
+                <button onclick="show('9')">9</button>
+                <button onclick="show('-')">-</button>
+            </div>
+            <div>
+                <button onclick="show('4')">4</button>
+                <button onclick="show('5')">5</button>
+                <button onclick="show('6')">6</button>
+                <button onclick="show('+')">+</button>
+            </div>
+            <div id="d4">
+                <button onclick="show('1')">1</button>
+                <button onclick="show('2')">2</button>
+                <button onclick="show('3')">3</button>
+                <button id="beraber" onclick="calc()">=</button>
+            </div>
+            <div>
+                <button id="zero" onclick="show('0')">0</button>
+                <button id="point" onclick="show('.')">.</button>
+            </div>
+        </div>
+        <div class="hesablama">
+            <div class="input">
+                <input id="a" type="number" placeholder="Rəqəm daxil edin..."/>
+                <input id="b" type="number" placeholder="Rəqəm daxil edin..."/>
+                <input id="c" type="number" placeholder="Rəqəm daxil edin..."/>
+            </div>
+            <div class="btn">
+                <div><button onclick="topla()">Cem</button> <span id="toplan"></span></div>
+                <div><button onclick="hasil()">Hasil</button> <span id="hasiln"></span></div>
+                <div><button onclick="orta()">Ədədi Orta</button> <span id="ortan"></span></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const display = document.getElementById("display");
+        const a = document.getElementById("a");
+        const b = document.getElementById("b");
+        const c = document.getElementById("c");
+
+
+        function show(x) {
+            display.value += x;
+        }
+
+        function calc(x) {
+            display.value = eval(display.value);
+        }
+        function del() {
+            display.value = "";
+        }
+        function quvvet() {
+            display.value = display.value ** 2
+        }
+        function topla() {
+            toplan.innerHTML = eval(+a.value + +b.value + +c.value);
+        }
+        function hasil() {
+            hasiln.innerHTML = eval(a.value * b.value * c.value);
+        }
+        function orta() {
+            ortan.innerHTML = eval(+a.value + +b.value + +c.value) / 3;
+        }
+    </script>
+</body>
+
+</html>
